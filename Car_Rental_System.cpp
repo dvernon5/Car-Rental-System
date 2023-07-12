@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <regex>
 
 class User 
 {
@@ -26,6 +27,8 @@ class User
         std::string AccountID;
 }
 
+bool isValid(std::string& email);
+
 int main(void)
 {
     return 0;
@@ -37,4 +40,10 @@ User::User(std::string first, std::string last, std::string password, std::strin
     lastName = last;
     this->password = password;
     AccountNumber = number;
+}
+
+bool isValid(std::string& email)
+{
+    const std::regex pattern(R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
+    return std::regex_match(email, pattern);
 }
