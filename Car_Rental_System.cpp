@@ -58,3 +58,41 @@ int checkAccountExistance(std::map<std::string, User> users, std::string email)
 
     return -1;
 }
+
+void addUser(std::map<std::string, User>& users)
+{
+    std::string email;
+    std::cout << "Enter your Email Address: ";
+    std::cin  >> email;
+
+    if (!isValid(email)
+    {
+        std::cout << "Invalid email address. Pleae enter a valid email." << std::endl;
+        return;
+    }
+
+    int emailFound = checkAccountExistence(users, email);
+    if (emailFound != -1)
+    {
+        std::cout << "Email address already exist." << std::endl;
+        return;
+    }
+
+    std::string firstName;
+    std::cout << "Enter your First Name: ";
+    std::cin  >> firstName;
+
+    std::string lastName;
+    std::cout << "Enter your Last Name: ";
+    std::cin  >> lastName;
+
+    std::string password;
+    std::cout << "Enter a password: ";
+    std::cin  >> password;
+
+    std::string accountID;
+    std::cout << "Enter an accountID ";
+    std::cin  >> accountID;
+    
+    users.insert(std::make_pair(email, User(firstName, lastName, password, AccountID)));   
+}
