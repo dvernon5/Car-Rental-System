@@ -45,6 +45,29 @@ class Car
         double dailyFee;
 };
 
+class CarRentalSystem
+{
+    public:
+        CarRentalSystem();
+        void run();
+
+    private:
+        std::unordered_map<std::string, User> users;
+        std::unordered_map<std::string, Car> carInventory;
+        std::string loggedInUserEmail;
+
+        void loadUsers();
+        void saveUsers() const;
+        void printCarInventory() const;
+        void loginUser();
+        voiid createUserAccount();
+        bool isValidEmail(const std::string& email) const;
+        int getUserInputInteger(const std::string& prompt) const;
+        void chargeUser(const std::string& email, double amount) const;
+        void displayWelcomeMessage() const;
+        void displayGoodByeMessage() const;
+};
+
 User::User(const std::string& first, const std::string& last, const std::string& password, const std::string& number)
     : firstName(first), lastName(last), password(password) {}
 
