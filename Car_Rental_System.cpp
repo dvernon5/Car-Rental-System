@@ -26,7 +26,6 @@ class User
         std::string lastName;
         std::string emailAddress;
         std::string password;
-        std::string AccountNumber;
 };
 
 class Car
@@ -45,3 +44,6 @@ class Car
         int quantity;
         double dailyFee;
 };
+
+User::User(const std::string& first, const std::string& last, const std::string& password, const std::string& number)
+    : firstName(first), lastName(last), password(password) {}
