@@ -47,3 +47,5 @@ class Car
 
 User::User(const std::string& first, const std::string& last, const std::string& password, const std::string& number)
     : firstName(first), lastName(last), password(password) {}
+
+Car::Car(const std::string& name, int quantity, double dailyFee) : name(name), quantity(quantity), dailyFee(dailyFee) {}
