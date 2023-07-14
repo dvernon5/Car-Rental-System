@@ -25,7 +25,24 @@ class User
         std::string lastName;
         std::string password;
         std::string AccountID;
-}
+};
+
+class Car 
+{
+    public:
+        Car() = default;
+        Car(std::string name, int quantity, double dailyFee);
+        std::string getName() { return name; }
+        std::string getQuantity() { return quantity; }
+        std::string getDailyFee() { return dailyFee; }
+        bool reserve();
+        double calculateDailyFee();
+
+    private:
+        std::string name;
+        int quantity;
+        double dailyFee;
+};
 
 bool isValid(std::string& email);
 
