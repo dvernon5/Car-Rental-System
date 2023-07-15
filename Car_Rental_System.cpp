@@ -115,7 +115,7 @@ void CarRentalSystem()::loadUsers()
     infile.close();
 }
 
-void CarRentalSystem::saveUsers()
+void CarRentalSystem::saveUsers() const
 {
     std::ofstream outfile("Users.txt");
     if (!outfile.is_open())
@@ -129,4 +129,12 @@ void CarRentalSystem::saveUsers()
     }
 
     outfile.close();
+}
+
+void CarRentalSystem::printCarInventory() const
+{
+    for (const auto& car : carInventory)
+    {
+        std::cout << car.second.getName() << "(Quantity: " << car.second.getQuantity() << ")" << std::endl;
+    }
 }
