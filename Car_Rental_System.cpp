@@ -72,6 +72,13 @@ class CarRentalSystem
 User::User(const std::string& first, const std::string& last, const std::string& password, const std::string& number)
     : firstName(first), lastName(last), password(password) {}
 
+User::toString()
+{
+    std::stringstream ss;
+    ss << firstName << "," << lastName << "," << password;
+    return ss;
+}
+
 Car::Car(const std::string& name, int quantity, double dailyFee) : name(name), quantity(quantity), dailyFee(dailyFee) {}
 
 CarRental::CarRental() 
