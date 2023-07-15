@@ -63,6 +63,7 @@ class CarRentalSystem
         voiid createUserAccount();
         bool isValidEmail(const std::string& email) const;
         int getUserInputInteger(const std::string& prompt) const;
+        void reserveCar();
         void chargeUser(const std::string& email, double amount) const;
         void displayWelcomeMessage() const;
         void displayGoodByeMessage() const;
@@ -82,4 +83,27 @@ CarRental::CarRental()
         { "Car C", Car("Car C", 2, 70.00) },
         { "Car D", Car("Car D", 2, 70.00) }
     };
+}
+
+void CarRentalSystem()::loadUsers() 
+{
+    ifstream infile("Users.txt");
+    if (!infile.is_open())
+    {
+        cout << "No user data found. Starting with an empty user database." << std::endl;
+        return;
+    }
+
+    std::string line = "";
+    while (getline(infile, line))
+    {
+        std::istringstream iss(line);
+        std::string email = "", firstName = "", lastName = "", password = "";
+        if (getline(iss, email, ',') && getline(iss, firstName, ',') && getline(iss, lastName, ',') && getline(iss, password))
+        {
+            users.emplace(email, User(firstName, lastName, password));
+        }
+    }
+
+    infile.close();
 }
