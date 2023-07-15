@@ -107,3 +107,19 @@ void CarRentalSystem()::loadUsers()
 
     infile.close();
 }
+
+void CarRentalSystem::saveUsers()
+{
+    std::ofstream outfile("Users.txt");
+    if (!outfile.is_open())
+    {
+        std::cout << "Failed to save user data." << std::endl;
+    }
+
+    for (const auto& user : users)
+    {
+        outfile << user.first << "," << user.second.toString() << std::endl;
+    }
+
+    outfile.close();
+}
