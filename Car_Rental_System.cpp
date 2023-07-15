@@ -72,3 +72,14 @@ User::User(const std::string& first, const std::string& last, const std::string&
     : firstName(first), lastName(last), password(password) {}
 
 Car::Car(const std::string& name, int quantity, double dailyFee) : name(name), quantity(quantity), dailyFee(dailyFee) {}
+
+CarRental::CarRental() 
+{
+    loadUsers();
+    carInventory = {
+        { "Car A", Car("Car A", 2, 50.00) },
+        { "Car B", Car("Car B", 2, 50.00) },
+        { "Car C", Car("Car C", 2, 70.00) },
+        { "Car D", Car("Car D", 2, 70.00) }
+    };
+}
