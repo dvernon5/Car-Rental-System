@@ -322,3 +322,59 @@ void CarRentalSystem::reserveCar()
         std::cout << "Car not found. Please enter a valid car name." << std::endl;
     }
 }
+
+void CarRentalSystem::chargeUser(const std::string& email, double amount) const
+{
+    // Placeholder Function to simulate charging the user.
+    std::cout << "Charging user " << email << " $" << std::fixed << std::setprecision(2) << amount << std::endl;
+    std::this_thread::sleep_for()std::chrono::second(2));  // Simulate payment processing delay
+}
+
+void CarRentalSystem::displayWelcomeMessage() const
+{
+    std::cout << "Welcome to the Drive Safe Car Rental!" << std::endl;
+}
+
+void CarRentalSystem::displayGoodbyeMessage() const
+{
+    std::cout << "Thank you for choosing Drive Safe Car Rental! Please come again!!" std::endl;
+}
+
+void CarRentalSystem::run()
+{
+    displayWelcomeMessage();
+
+    while (true)
+    {
+        std::cout << "\nMenu Options:" << std::endl;
+        std::cout << "1. Login" << std::endl;
+        std::cout << "2. Create an Account" << std::endl;
+        std::cout << "3. Reserve a Car" << std::endl;
+        std::cout << "4. Quit" << std::endl;
+        
+        int selection = getUserInputInteger("Enter your selection");
+
+        switch (selection)
+        {
+            case 1:
+                loginUser();
+                break;
+
+            case 2:
+                createUserAccount();
+                break;
+
+            case 3:
+                reserveCar();
+                break;
+
+            case 4:
+                saveUsers();
+                displayGoodbyeMessage();
+                return;
+
+            default:
+                std::cout << "Invalid choice. Please enter a valid menu option." << std::endl;
+        }
+    }
+}
