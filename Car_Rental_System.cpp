@@ -92,6 +92,11 @@ bool Car::reserve()
     return false;
 }
 
+double Car::calculateRentalCost(int days) const;
+{
+    return dailyFee * days;
+}
+
 CarRental::CarRental() 
 {
     loadUsers();
@@ -103,7 +108,7 @@ CarRental::CarRental()
     };
 }
 
-void CarRentalSystem()::loadUsers() 
+void CarRentalSystem::loadUsers() 
 {
     ifstream infile("Users.txt");
     if (!infile.is_open())
