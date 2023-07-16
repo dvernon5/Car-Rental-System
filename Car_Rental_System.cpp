@@ -81,6 +81,17 @@ User::toString()
 
 Car::Car(const std::string& name, int quantity, double dailyFee) : name(name), quantity(quantity), dailyFee(dailyFee) {}
 
+bool Car::reserve()
+{
+    if (quantity > 0)
+    {
+        --quantity;
+        return true;
+    }
+    
+    return false;
+}
+
 CarRental::CarRental() 
 {
     loadUsers();
@@ -248,4 +259,31 @@ int CarRentalSystem::getUserInputInteger(const std::string& prompt) const
     }
 
     return value;
+}
+
+void CarRentalSystem::reserveCar()
+{
+    printCarInventory();
+
+    std::string carName;
+    std::cout << "\nEnter the name of the car you want to reserve (or type 'q' to quit): ";
+    std::getline(std::cin, carName);
+
+    if (carName == "q" || carName == "Q")
+    {
+        return;
+    }
+
+    auto itr = carInventory.find(carName);
+    if (itr != carInventory.end())
+    {
+        Car& selectedCar = itr->second;
+
+        if (selectedCar.reserve())
+        {
+            
+        }
+
+    }
+
 }
