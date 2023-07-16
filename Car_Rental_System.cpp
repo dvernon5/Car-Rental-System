@@ -182,3 +182,42 @@ void CarRentalSystem::loginUser()
     }
 }
 
+void createUserAccount()
+{
+    std::string email;
+    std::cout << "Enter your email: ";
+    getline(std::cin, email);
+
+    if (!isValidEmail(email))
+    {
+        std::cout << "Invalid email address. Please enter an valid email." << std::endl;
+        return;
+    }
+
+    auto itr = users.find(email);
+    if (itr != users.end())
+    {
+        std::cout << "Email already exists." << std::endl;
+        return;
+    }
+
+    std::string firstName;
+    std::cout << "Enter your first name: ";
+    getline(std::cin, firstName);
+
+    std::string lastName;
+    std::cout << "Enter your last name: ";
+    getline(std::cin, lastName);
+
+    std::string password;
+    std::cout << "Enter a password: ";
+    getline(std::cin, password);
+
+    users.emplace(email, User(firstName, lastName, password));
+
+    std::cout << "Your account has been successfully added." << std::endl;
+    std::cout << "Welcome " << firstName << " " << lastName << std::endl;
+
+    saveUsers();
+}
+
