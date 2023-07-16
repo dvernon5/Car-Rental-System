@@ -138,3 +138,47 @@ void CarRentalSystem::printCarInventory() const
         std::cout << car.second.getName() << "(Quantity: " << car.second.getQuantity() << ")" << std::endl;
     }
 }
+
+void CarRentalSystem::loginUser()
+{
+    std::string email;
+    std::cout << "Enter your email: ";
+    getline(std::cin, email);
+
+    if (!isValidEmail(email))
+    {
+        std::cout << "Invalid email address. Please enter a valid email." << std::endl;
+        return;
+    }
+
+    auto itr = users.find(email);
+
+    if (itr != users.end())
+    {
+        std::string password;
+        std::cout << "Enter your password: ";
+        getline(std::cin, password);
+        
+        if (itr->second.getPassword() == password)
+        {
+            loggedInUserEmail = email;
+            std::cout << "Login successful. Welcome, " << itr->second.getFirstName() << " " << itr->second.LastName << "!" << std::endl;
+        }
+        else
+        {
+            std::cout << "Incorrect password." << std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "Email is not found. Do you want to create an account? (y/n): ";
+        std::string response;
+        getline(std::cin, response);
+
+        if (response == "y" || response == "Y")
+        {
+            createUserAccount();
+        }
+    }
+}
+
