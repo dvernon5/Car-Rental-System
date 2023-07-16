@@ -269,26 +269,56 @@ int CarRentalSystem::getUserInputInteger(const std::string& prompt) const
 void CarRentalSystem::reserveCar()
 {
     printCarInventory();
-
-    std::string carName;
+    
+    std::string carName = "";
     std::cout << "\nEnter the name of the car you want to reserve (or type 'q' to quit): ";
-    std::getline(std::cin, carName);
+    getline(std::cin, carName);
 
-    if (carName == "q" || carName == "Q")
-    {
-        return;
-    }
+    if (carName == 'q' || carName == 'Q') { return; }
 
     auto itr = carInventory.find(carName);
     if (itr != carInventory.end())
     {
-        Car& selectedCar = itr->second;
-
+        Car& selectedCar = itr->second();
         if (selectedCar.reserve())
         {
-            
+            int rentalDays = getUserInputInteger("Enter how many days you want to rent?");
+            double rentalCost = selectedCar.calculateRentalDays();
+
+            std::cout << "Total Rental Cost $" << std::fixed << std::setprecision(2) << rentalCost << std::endl;
+
+            std::string confirmation = "";
+            while (true)
+            {
+                std::cout << "Confirm your order (y/n): ";
+                std::getline(std::cin, confirmation);
+
+                if (confirmation == "y" || confirmaion == "Y")
+                {
+                    chargeUser(loggedInUserEmail, rentalCost);
+                    std::cout << "Car reserved successfully. Enjoy your ride!" << std::endl;
+                    break;
+                }
+                else if (confirmation == "n" || confirmation == "N")
+                {
+                    std::cout << "Order canceled." << std::endl;
+                    selectedCar.reserve();  // Cancel the reservation and make the car available again
+                    break;
+                }
+                else 
+                {
+                    std::cout << "Invalid input. Please enter 'y' or 'n'." << std::endl;
+                }
+
+            }
         }
-
+        else 
+        {
+            std::cout << "Invalid car selection or no cars available. Please try again." << std::endl;
+        }
     }
-
+    else 
+    {
+        std::cout << "Car not found. Please enter a valid car name." << std::endl;
+    }
 }
