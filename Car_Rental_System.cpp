@@ -63,7 +63,7 @@ class CarRentalSystem
         void saveUsers() const;
         void printCarInventory() const;
         void loginUser();
-        voiid createUserAccount();
+        void createUserAccount();
         bool isValidEmail(const std::string& email) const;
         int getUserInputInteger(const std::string& prompt) const;
         void reserveCar();
