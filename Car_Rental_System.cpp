@@ -227,3 +227,25 @@ bool CarRentalSystem::isValidEmail(const std::string& email) const
     return std::regex_match(email, pattern);
 }
 
+int CarRentalSystem::getUserInputInteger(const std::string& prompt) const
+{
+    int value = 0;
+
+    while (true)
+    {
+        std::cout << prompt;
+        if (std::cin >> value)
+        {
+            std::cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+            break;
+        }
+        else
+        {
+            std::cout << "Invalid input. Please enter a valid number." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
+        }
+    }
+
+    return value;
+}
