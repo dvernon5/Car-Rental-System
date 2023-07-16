@@ -378,3 +378,11 @@ void CarRentalSystem::run()
         }
     }
 }
+
+int main(void)
+{
+    CarRentalSystem carRentalSystem;
+    carRentalSystem.run();
+
+    return 0;
+}
